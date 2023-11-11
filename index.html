@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <link rel="stylesheet" href="style.css">
+  <title>Employee Hiring Recruitment</title>
+  
+</head>
+<body>
+  <div class="grid-container">
+  
+  <div class="container">
+    <div class="topbar">
+        <div class="Employee logo">
+            <h2>Employee hiring Recruitment</h2>
+        </div>
+        <div class="search">
+            <input type="text" name="search" placeholder="search here">
+            <label for="search"><i class="employee-search"></i></label>
+        </div>
+            <div class="sidebar">
+              <ul> 
+               <li> <a href= "#"><div>Applicants</div></a> </li>
+               <li> <a href= "#"><div>Shortlisted Candidates</div></a> </li>
+               <li> <a href= "#"><div>Hired Candidates</div></a> </li>
+               <li> <a href= "#"><div>Open Position</div></a> </li>
+               <li> <a href= "#"><div>Yeras of Experience</div></a> </li>
+               
+              </ul>    
+           </div>
+           <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="monthSelect">Select Month:</label>
+                <select id="monthSelect" onchange="updateBarChart()">
+                  <option value="Jan">January</option>
+                  <option value="Feb">February</option>
+                  <option value="Mar">March</option>
+                  <option value="Apr">April</option>
+                  <option value="May">May</option>
+                  <option value="Jun">June</option>
+                  <option value="Jul">July</option>
+                  <option value="Aug">August</option>
+                  <option value="Sep">September</option>
+                  <option value="Oct">October</option>
+                  <option value="Nov">November</option>
+                  <option value="Dec">December</option>
+                </select>
+              </div>
+            </div>
+      
+
+    <div class="container">
+        
+        
+           
+        <div class="row">
+          <div class="col-md-3 card-1">
+            <h4 class="card-title">Applications</h4>
+            <p class="card-text">150</p>
+          </div>
+          <div class="col-md-3 card-1">
+            <h4 class="card-title">Open Position</h4>
+            <p class="card-text">11</p>
+          </div>
+    
+          <div class="col-md-3 card-2">
+            <h4 class="card-title">Shortlisted Candidates</h4>
+            <p class="card-text">97</p>
+          </div>
+    
+          <div class="col-md-3 card-3">
+            <h4 class="card-title">Hired Candidates</h4>
+            <p class="card-text">39</p>
+          </div>
+    
+          <div class="col-md-3 card-4">
+            <h4 class="card-title">Rejected Candidates</h4>
+            <p class="card-text">111</p>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <h4 class="card-title">Applications Received Source</h4>
+              <canvas id="pie-chart"></canvas>
+            </div>
+          </div>
+    
+          <div class="col-md-6">
+            <div class="card">
+              <h4 class="card-title">Hiring Trends by Month</h4>
+              <canvas id="bar-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+      <script>
+        // Pie chart
+        var ctx = document.getElementById('pie-chart').getContext('2d');
+        var pieChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Website', 'Job Board', 'Referral'],
+            datasets: [{
+              data: [60, 10, 30],
+              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+            }]
+          }
+        });
+    
+        // Bar chart
+        var ctx = document.getElementById('bar-chart').getContext('2d');
+        var barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Hired Candidates percentage',
+          data: [10, 4, 8, 12, 10, 21, 24, 19, 3, 9, 16, 12],
+          backgroundColor: '#36A2EB'
+        }]
+      }
+    });
+    // Function to update the bar chart based on the selected month
+    function updateBarChart() {
+        var selectedMonth = document.getElementById("monthSelect").value;
+        // You should fetch the data for the selected month and update the bar chart accordingly
+        // For demonstration purposes, let's assume you have the data for each month in an array named "dataForMonths"
+        var dataForMonths = {
+          "Jan": 10,
+          "Feb": 4,
+          "Mar": 8,
+          "Apr": 12,
+          "May": 10,
+          "Jun": 21,
+          "Jul": 24,
+          "Aug": 19,
+          "Sep": 3,
+          "Oct": 9,
+          "Nov": 16,
+          "Dec": 12
+        };
+
+        // Update the bar chart data
+        barChart.data.datasets[0].data = [dataForMonths[selectedMonth]];
+        barChart.update();
+      }
+</script>
+    
+</body>
+</html>
